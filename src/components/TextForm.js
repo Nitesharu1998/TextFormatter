@@ -19,6 +19,17 @@ const handleOnUpperClick=()=>{
     setText(newText);
     props.showAlert("Text is cleared","success");
   }
+  const handleOnCopyClick=()=>{
+    let text=document.getElementById("exampleFormControlTextarea1");
+    text.select();
+    navigator.clipboard.writeText(text.value);
+    props.showAlert("text is copied","success");
+  }
+  const handleOnRemoveSpaceClick=()=>{
+    let txt=text.split(/[ ]+/);
+    setText(txt.join(" "));
+    props.showAlert("Extra spaces has been removed","success");
+  }
 const [text,setText]= useState('');
 
   return (
@@ -31,6 +42,8 @@ const [text,setText]= useState('');
         <button className="btn btn-primary mx-2" onClick={handleOnUpperClick}>Uppercase</button>
         <button className="btn btn-primary mx-2" onClick={handleOnLowerClick}>Lowercase</button>
         <button className="btn btn-primary mx-2" onClick={handleOnClearClick}>Clear</button>
+        <button className="btn btn-primary mx-2" onClick={handleOnCopyClick}>Copy Text</button>
+        <button className="btn btn-primary mx-2" onClick={handleOnRemoveSpaceClick}>Remove extra spaces</button>
     </div>
     <div className="container my-3" style={{color: 'black'}}>
       <h2>Text Summary</h2>
